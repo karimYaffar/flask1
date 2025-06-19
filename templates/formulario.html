@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Clasificador de Insectos</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -10,84 +10,113 @@
       theme: {
         extend: {
           colors: {
-            forest: '#134e4a',
-            leaf: '#10b981',
-            sky: '#e0f2fe',
-            dusk: '#475569'
+            tierra: '#3e2c23',
+            arena: '#f9f5f0',
+            cacao: '#a67c52',
+            caramelo: '#d6a77a',
+            sombra: '#4a3f35',
+            errorbg: '#fef1f0',
+            error: '#9b2c2c'
           }
         }
       }
     }
   </script>
-  <style>
-    body {
-      background: radial-gradient(ellipse at top left, #e0f2fe, #f0fdf4);
-    }
-  </style>
 </head>
-<body class="min-h-screen font-sans text-dusk">
-  <header class="bg-forest text-white py-6 shadow-md">
-    <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
-      <h1 class="text-3xl font-bold tracking-wide">Clasificador de Insectos</h1>
-      <p class="text-sm opacity-80 mt-2 sm:mt-0">Usando inteligencia artificial</p>
-    </div>
-  </header>
+<body class="bg-arena min-h-screen font-sans text-tierra">
+  <div class="max-w-3xl mx-auto py-10 px-5">
+    
+    <!-- Header -->
+    <header class="text-center mb-12">
+      <div class="w-16 h-16 mx-auto bg-cacao text-white rounded-full flex items-center justify-center shadow-lg">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M9.75 3L6 6.75m0 0L9.75 10.5M6 6.75h12"></path>
+        </svg>
+      </div>
+      <h1 class="text-4xl font-bold mt-4">Clasificador de Insectos</h1>
+      <p class="mt-2 text-sombra text-sm">Explora especies con precisión y estilo natural.</p>
+    </header>
 
-  <main class="max-w-4xl mx-auto px-4 py-10">
-    <section class="bg-white shadow-md rounded-xl p-6">
-      <h2 class="text-xl font-semibold mb-6 border-b pb-2 text-leaf flex items-center gap-2">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1..."/></svg>
-        Ingresar datos del insecto
-      </h2>
-
-      <form id="formulario" onsubmit="clasificarInsecto(event)" class="grid gap-6">
+    <!-- Card -->
+    <section class="bg-white border border-caramelo shadow-md rounded-xl p-6 space-y-6">
+      <form id="formulario" onsubmit="clasificarInsecto(event)" class="space-y-6">
+        
         <div>
           <label for="abdomen" class="block text-sm font-medium mb-1">Longitud del Abdomen (mm)</label>
-          <input type="number" id="abdomen" name="abdomen" step="0.1" required placeholder="Ej: 12.5"
-            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-leaf focus:outline-none">
+          <input 
+            type="number" 
+            id="abdomen" 
+            name="abdomen" 
+            step="0.1" 
+            class="w-full px-4 py-2 border border-caramelo rounded-md focus:outline-none focus:ring-2 focus:ring-cacao" 
+            placeholder="Ej. 12.5"
+            required
+          />
         </div>
 
         <div>
           <label for="antena" class="block text-sm font-medium mb-1">Longitud de las Antenas (mm)</label>
-          <input type="number" id="antena" name="antena" step="0.1" required placeholder="Ej: 8.7"
-            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-leaf focus:outline-none">
+          <input 
+            type="number" 
+            id="antena" 
+            name="antena" 
+            step="0.1" 
+            class="w-full px-4 py-2 border border-caramelo rounded-md focus:outline-none focus:ring-2 focus:ring-cacao" 
+            placeholder="Ej. 6.8"
+            required
+          />
         </div>
 
         <div class="flex flex-col sm:flex-row gap-4">
-          <button type="submit" id="submitBtn" class="bg-leaf text-white px-6 py-3 rounded-lg hover:bg-forest flex-1 transition-colors">
-            Clasificar Insecto
+          <button id="submitBtn" type="submit"
+            class="flex-1 bg-cacao text-white font-semibold py-2 px-4 rounded-md hover:bg-tierra transition-all flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M5 13l4 4L19 7"></path>
+            </svg>
+            Clasificar
           </button>
-          <button type="button" onclick="clearForm()" class="bg-gray-100 px-6 py-3 rounded-lg hover:bg-gray-200 flex-1">
+          <button type="button" onclick="clearForm()"
+            class="flex-1 bg-arena text-tierra font-semibold py-2 px-4 rounded-md border border-caramelo hover:bg-caramelo hover:text-white transition-all flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
             Limpiar
           </button>
         </div>
 
-        <div id="loadingSpinner" class="hidden flex items-center gap-3 text-gray-600">
-          <div class="w-5 h-5 border-2 border-leaf border-t-transparent rounded-full animate-spin"></div>
+        <!-- Cargando -->
+        <div id="loadingSpinner" class="hidden flex items-center justify-center gap-3 text-sm text-sombra">
+          <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-cacao"></div>
           Analizando insecto...
         </div>
       </form>
+
+      <!-- Resultado -->
+      <div id="resultado"></div>
     </section>
 
-    <section id="resultado" class="mt-6"></section>
-  </main>
+    <!-- Footer -->
+    <footer class="mt-10 text-center text-sm text-sombra">
+      Tecnología cálida para la clasificación precisa de insectos.
+    </footer>
+  </div>
 
+  <!-- Script -->
   <script>
     function clasificarInsecto(event) {
       event.preventDefault();
-      const submitBtn = document.getElementById('submitBtn');
-      const resultado = document.getElementById('resultado');
-      const spinner = document.getElementById('loadingSpinner');
-
-      submitBtn.disabled = true;
-      spinner.classList.remove('hidden');
-      resultado.innerHTML = '';
-
       const abdomen = document.getElementById('abdomen').value;
       const antena = document.getElementById('antena').value;
+      const resultado = document.getElementById('resultado');
+      const spinner = document.getElementById('loadingSpinner');
+      const submitBtn = document.getElementById('submitBtn');
+
+      resultado.innerHTML = '';
+      spinner.classList.remove('hidden');
+      submitBtn.disabled = true;
 
       if (!abdomen || !antena || isNaN(abdomen) || isNaN(antena)) {
-        showError('Por favor, completa todos los campos con valores numéricos.');
+        showError('Por favor ingresa valores numéricos válidos.');
         resetButton();
         return;
       }
@@ -99,30 +128,37 @@
       })
       .then(res => res.json())
       .then(data => {
-        if (data.error) showError(data.error);
-        else showSuccess(`El insecto es un/a ${data.categoria}`);
+        if (data.error) {
+          showError(data.error);
+        } else {
+          showSuccess(`El insecto pertenece a la categoría: ${data.categoria}`);
+        }
       })
-      .catch(() => showError('Error en la conexión.'))
-      .finally(resetButton);
+      .catch(() => {
+        showError('Error en la conexión. Intenta nuevamente.');
+      })
+      .finally(() => {
+        resetButton();
+      });
     }
 
     function showError(msg) {
       document.getElementById('resultado').innerHTML = `
-        <div class="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg">
-          <strong>Error:</strong> ${msg}
+        <div class="bg-errorbg border border-error rounded-md p-4 text-error">
+          ⚠️ ${msg}
         </div>`;
     }
 
     function showSuccess(msg) {
       document.getElementById('resultado').innerHTML = `
-        <div class="bg-green-50 border border-green-200 text-green-700 p-4 rounded-lg">
-          <strong>¡Exito!</strong> ${msg}
+        <div class="bg-caramelo bg-opacity-10 border border-caramelo rounded-md p-4 text-cacao font-semibold">
+          🍂 ${msg}
         </div>`;
     }
 
     function resetButton() {
-      document.getElementById('submitBtn').disabled = false;
       document.getElementById('loadingSpinner').classList.add('hidden');
+      document.getElementById('submitBtn').disabled = false;
     }
 
     function clearForm() {
