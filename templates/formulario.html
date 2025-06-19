@@ -11,12 +11,11 @@
         extend: {
           colors: {
             tierra: '#3e2c23',
-            arena: '#f9f5f0',
             cacao: '#a67c52',
+            arena: '#f9f5f0',
             caramelo: '#d6a77a',
-            sombra: '#4a3f35',
-            errorbg: '#fef1f0',
-            error: '#9b2c2c'
+            error: '#9b2c2c',
+            exito: '#c2691f'
           }
         }
       }
@@ -34,7 +33,7 @@
         </svg>
       </div>
       <h1 class="text-4xl font-bold mt-4">Clasificador de Insectos</h1>
-      <p class="mt-2 text-sombra text-sm">Explora especies con precisión y estilo natural.</p>
+      <p class="mt-2 text-cacao text-sm">Descubre el tipo de insecto a partir de sus medidas corporales.</p>
     </header>
 
     <!-- Card -->
@@ -85,7 +84,7 @@
         </div>
 
         <!-- Cargando -->
-        <div id="loadingSpinner" class="hidden flex items-center justify-center gap-3 text-sm text-sombra">
+        <div id="loadingSpinner" class="hidden flex items-center justify-center gap-3 text-sm text-cacao">
           <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-cacao"></div>
           Analizando insecto...
         </div>
@@ -95,9 +94,9 @@
       <div id="resultado"></div>
     </section>
 
-    <!-- Footer -->
-    <footer class="mt-10 text-center text-sm text-sombra">
-      Tecnología cálida para la clasificación precisa de insectos.
+    <!-- Información -->
+    <footer class="mt-10 text-center text-sm text-caramelo">
+      Esta aplicación utiliza modelos de IA para la clasificación de insectos.
     </footer>
   </div>
 
@@ -131,7 +130,7 @@
         if (data.error) {
           showError(data.error);
         } else {
-          showSuccess(`El insecto pertenece a la categoría: ${data.categoria}`);
+          showSuccess(`El insecto es un/a ${data.categoria}`);
         }
       })
       .catch(() => {
@@ -144,15 +143,15 @@
 
     function showError(msg) {
       document.getElementById('resultado').innerHTML = `
-        <div class="bg-errorbg border border-error rounded-md p-4 text-error">
+        <div class="bg-red-100 border border-error rounded-md p-4 text-error">
           ⚠️ ${msg}
         </div>`;
     }
 
     function showSuccess(msg) {
       document.getElementById('resultado').innerHTML = `
-        <div class="bg-caramelo bg-opacity-10 border border-caramelo rounded-md p-4 text-cacao font-semibold">
-          🍂 ${msg}
+        <div class="bg-yellow-100 border border-exito rounded-md p-4 text-exito font-semibold">
+          ✅ ${msg}
         </div>`;
     }
 
