@@ -9,7 +9,7 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
 # Cargar el modelo entrenado
-model = joblib.load('modelo_insectos.pkl')
+model = joblib.load('model_insects.pkl')
 app.logger.debug('Modelo cargado correctamente.')
 
 @app.route('/')
@@ -33,10 +33,9 @@ def predict():
 
         # Devolver las predicciones como respuesta JSON
         return jsonify({'categoria': prediction[0]})
-    
     except Exception as e:
         app.logger.error(f'Error en la predicción: {str(e)}')
         return jsonify({'error': str(e)}), 400
-""" 
-if __name__ == '__main__':
-    app.run(debug=True) """
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
