@@ -57,9 +57,6 @@
           <button type="submit" id="submitBtn" class="bg-sepia text-cream px-6 py-3 rounded-lg hover:bg-lightSepia flex-1 transition-colors">
             Clasificar Insecto
           </button>
-          <button type="button" onclick="clearForm()" class="bg-coffee text-cream border border-lightSepia px-6 py-3 rounded-lg hover:bg-lightSepia flex-1">
-            Limpiar
-          </button>
         </div>
 
         <div id="loadingSpinner" class="hidden flex items-center gap-3 text-cream">
@@ -125,10 +122,7 @@
       document.getElementById('loadingSpinner').classList.add('hidden');
     }
 
-    function clearForm() {
-      document.getElementById('formulario').reset();
-      document.getElementById('resultado').innerHTML = '';
-    }
+  
   </script>
 </body>
 </html>
